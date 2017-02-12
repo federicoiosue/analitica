@@ -18,8 +18,8 @@ android {
         }
     }
     productFlavors {
-        play {}
-        foss {}
+        googleAnalytics {}
+        piwik {}
     }
 }
 
@@ -29,6 +29,6 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    playCompile 'com.google.android.gms:play-services-analytics:10.0.1'
-    fossCompile 'org.piwik.sdk:piwik-sdk:0.0.4'
+    googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:10.0.1'
+    piwikCompile 'org.piwik.sdk:piwik-sdk:0.0.4'
 }
