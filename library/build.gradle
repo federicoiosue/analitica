@@ -1,14 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.federicoiosue'
+version = project.VERSION_NAME
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
     defaultConfig {
-//        applicationId "android.feio.it.analitica"
-        minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.MIN_SDK
+        targetSdkVersion project.TARGET_SDK
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
