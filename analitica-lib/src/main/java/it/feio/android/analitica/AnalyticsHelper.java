@@ -1,4 +1,4 @@
-package android.feio.it.analitica;
+package it.feio.android.analitica;
 
 import android.app.Activity;
 

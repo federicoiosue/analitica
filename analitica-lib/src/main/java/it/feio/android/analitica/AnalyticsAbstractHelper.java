@@ -1,7 +1,7 @@
-package android.feio.it.analitica;
+package it.feio.android.analitica;
 
 
-import android.app.Application;
+import android.content.Context;
 import android.support.annotation.Nullable;
 
 
@@ -12,6 +12,6 @@ public abstract class AnalyticsAbstractHelper implements AnalyticsHelper {
 	}
 
 
-	AnalyticsAbstractHelper(Application application, String analyticsUrl, @Nullable String trackingId) {
+	AnalyticsAbstractHelper(Context context, String analyticsUrl, @Nullable String trackingId) {
 	}
 }

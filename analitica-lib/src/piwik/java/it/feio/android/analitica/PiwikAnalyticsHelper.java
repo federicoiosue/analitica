@@ -1,11 +1,12 @@
-package android.feio.it.analitica;
+package it.feio.android.analitica;
 
 import android.app.Activity;
-import android.app.Application;
+import android.content.Context;
 import android.content.res.Resources;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.piwik.sdk.Piwik;
 import org.piwik.sdk.TrackHelper;
 import org.piwik.sdk.Tracker;
@@ -20,13 +21,13 @@ public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 	private static boolean enabled;
 
 
-	PiwikAnalyticsHelper(Application application, String analyticsUrl) {
-		super(application, analyticsUrl, null);
+	PiwikAnalyticsHelper(Context context, String analyticsUrl) {
+		super(context, analyticsUrl, null);
 		enabled = !TextUtils.isEmpty(analyticsUrl);
 		if (tracker == null && enabled) {
 			try {
-				tracker = Piwik.getInstance(application).newTracker(analyticsUrl, 1);
-				tracker.setUserId(Settings.Secure.getString(application.getContentResolver(), Settings.Secure
+				tracker = Piwik.getInstance(context).newTracker(analyticsUrl, 1);
+				tracker.setUserId(Settings.Secure.getString(context.getContentResolver(), Settings.Secure
 						.ANDROID_ID));
 				TrackHelper.track().download().with(tracker);
 			} catch (MalformedURLException e) {
