@@ -5,6 +5,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
     }
 }
 
@@ -16,4 +17,16 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+apply plugin: 'org.sonarqube'
+sonarqube {
+    properties {
+        property "sonar.projectName", "Analitica Library"
+        property "sonar.projectKey", "analitica"
+        property 'sonar.projectVersion', project.VERSION_NAME
+        property "sonar.host.url", "http://localhost:9000"
+        property 'sonar.sourceEncoding', 'UTF-8'
+        property 'sonar.language', 'java'
+    }
 }

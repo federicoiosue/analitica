@@ -11,7 +11,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 
-public class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
+class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
     private static final String TAG = GoogleAnalyticsHelper.class.getSimpleName();
     private static Tracker tracker;
@@ -58,16 +58,12 @@ public class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
 
     @Override
-    public void trackActionFromResourceId(Activity activity, int resourceId) {
+    public void trackActionFromResourceId(Activity activity, int resourceId) throws Resources.NotFoundException {
         if (enabled) {
-            try {
-                tracker.send(new HitBuilders.EventBuilder()
-                        .setCategory(CATEGORIES.ACTION.name())
-                        .setAction(activity.getResources().getResourceEntryName(resourceId))
-                        .build());
-            } catch (Resources.NotFoundException e) {
-                Log.w(TAG, "No resource name found for request id");
-            }
+            tracker.send(new HitBuilders.EventBuilder()
+                    .setCategory(CATEGORIES.ACTION.name())
+                    .setAction(activity.getResources().getResourceEntryName(resourceId))
+                    .build());
         }
     }
 }

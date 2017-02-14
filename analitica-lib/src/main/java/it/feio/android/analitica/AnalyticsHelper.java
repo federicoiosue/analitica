@@ -3,7 +3,7 @@ package it.feio.android.analitica;
 import android.app.Activity;
 
 
-public interface AnalyticsHelper {
+interface AnalyticsHelper {
 
 	enum CATEGORIES {ACTION, SETTING, UPDATE}
 

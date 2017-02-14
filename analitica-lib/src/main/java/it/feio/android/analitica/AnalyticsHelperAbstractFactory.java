@@ -5,8 +5,8 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 
-public abstract class AnalyticsHelperAbstractFactory {
+abstract class AnalyticsHelperAbstractFactory {
 
-	public abstract AnalyticsHelper getAnalyticsHelper(Context context, String analyticsUrl, @Nullable String
+	abstract AnalyticsHelper getAnalyticsHelper(Context context, String analyticsUrl, @Nullable String
 			trackingId);
 }
