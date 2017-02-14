@@ -4,26 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
+
 
 class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
-    private static final String TAG = GoogleAnalyticsHelper.class.getSimpleName();
     private static Tracker tracker;
     private static boolean enabled;
 
 
-    /**
-     * @param context
-     * @param analyticsUrl
-     * @param trackingId
-     */
-    GoogleAnalyticsHelper(Context context, String analyticsUrl, String trackingId) {
+    GoogleAnalyticsHelper(Context context, String analyticsUrl, String trackingId) throws AnalyticsInstantiationException {
         super(context, analyticsUrl, trackingId);
         enabled = !TextUtils.isEmpty(analyticsUrl);
         if (tracker == null) {
@@ -32,7 +27,8 @@ class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
     }
 
 
-    public static Tracker getTracker() {
+    @Override
+    public Tracker getTracker() {
         return tracker;
     }
 
@@ -58,7 +54,7 @@ class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
 
     @Override
-    public void trackActionFromResourceId(Activity activity, int resourceId) throws Resources.NotFoundException {
+    public void trackActionFromResourceId(Activity activity, int resourceId) {
         if (enabled) {
             tracker.send(new HitBuilders.EventBuilder()
                     .setCategory(CATEGORIES.ACTION.name())

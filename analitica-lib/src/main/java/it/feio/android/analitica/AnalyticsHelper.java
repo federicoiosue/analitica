@@ -5,14 +5,14 @@ import android.app.Activity;
 
 interface AnalyticsHelper {
 
-	enum CATEGORIES {ACTION, SETTING, UPDATE}
+    enum CATEGORIES {ACTION, SETTING, UPDATE}
 
-	void trackScreenView(String screenName);
+    <T> T getTracker();
 
+    void trackScreenView(String screenName);
 
-	void trackEvent(CATEGORIES category, String action);
+    void trackEvent(CATEGORIES category, String action);
 
-
-	void trackActionFromResourceId(Activity activity, int resourceId);
+    void trackActionFromResourceId(Activity activity, int resourceId);
 
 }

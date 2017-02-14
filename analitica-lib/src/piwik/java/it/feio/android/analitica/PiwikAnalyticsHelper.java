@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.piwik.sdk.Piwik;
 import org.piwik.sdk.TrackHelper;
@@ -13,15 +12,16 @@ import org.piwik.sdk.Tracker;
 
 import java.net.MalformedURLException;
 
+import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 
-public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 
-    private static final String TAG = PiwikAnalyticsHelper.class.getSimpleName();
+class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
+
     private static Tracker tracker;
     private static boolean enabled;
 
 
-    PiwikAnalyticsHelper(Context context, String analyticsUrl) {
+    PiwikAnalyticsHelper(Context context, String analyticsUrl) throws AnalyticsInstantiationException {
         super(context, analyticsUrl, null);
         enabled = !TextUtils.isEmpty(analyticsUrl);
         if (tracker == null && enabled) {
@@ -31,13 +31,14 @@ public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
                         .ANDROID_ID));
                 TrackHelper.track().download().with(tracker);
             } catch (MalformedURLException e) {
-                Log.e(TAG, "Malformed url to get analytics tracker", e);
+                throw new AnalyticsInstantiationException("Invalid Piwik URL", e);
             }
         }
     }
 
 
-    public static Tracker getTracker() {
+    @Override
+    public Tracker getTracker() {
         return tracker;
     }
 
@@ -59,7 +60,7 @@ public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 
 
     @Override
-    public void trackActionFromResourceId(Activity activity, int resourceId) throws Resources.NotFoundException  {
+    public void trackActionFromResourceId(Activity activity, int resourceId) {
         if (enabled) {
             TrackHelper.track().event(CATEGORIES.ACTION.name(), activity.getResources().getResourceEntryName
                     (resourceId)).with(tracker);
