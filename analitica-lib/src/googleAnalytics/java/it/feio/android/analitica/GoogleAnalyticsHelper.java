@@ -2,8 +2,6 @@ package it.feio.android.analitica;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.text.TextUtils;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -18,11 +16,11 @@ class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
     private static boolean enabled;
 
 
-    GoogleAnalyticsHelper(Context context, String analyticsUrl, String trackingId) throws AnalyticsInstantiationException {
-        super(context, analyticsUrl, trackingId);
-        enabled = !TextUtils.isEmpty(analyticsUrl);
-        if (tracker == null) {
-            tracker = GoogleAnalytics.getInstance(context).newTracker(trackingId);
+    GoogleAnalyticsHelper(Context context, GoogleAnalyticsServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
+        super(context, serviceIdentifier);
+        enabled = serviceIdentifier != null;
+        if (enabled && tracker == null) {
+            tracker = GoogleAnalytics.getInstance(context).newTracker(serviceIdentifier.getTrackingId());
         }
     }
 

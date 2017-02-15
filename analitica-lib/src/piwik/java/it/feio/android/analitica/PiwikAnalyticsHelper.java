@@ -2,9 +2,7 @@ package it.feio.android.analitica;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.provider.Settings;
-import android.text.TextUtils;
 
 import org.piwik.sdk.Piwik;
 import org.piwik.sdk.TrackHelper;
@@ -21,12 +19,12 @@ class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
     private static boolean enabled;
 
 
-    PiwikAnalyticsHelper(Context context, String analyticsUrl) throws AnalyticsInstantiationException {
-        super(context, analyticsUrl, null);
-        enabled = !TextUtils.isEmpty(analyticsUrl);
-        if (tracker == null && enabled) {
+    PiwikAnalyticsHelper(Context context, PiwikServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
+        super(context, serviceIdentifier);
+        enabled = serviceIdentifier != null;
+        if (enabled && tracker == null) {
             try {
-                tracker = Piwik.getInstance(context).newTracker(analyticsUrl, 1);
+                tracker = Piwik.getInstance(context).newTracker(serviceIdentifier.getUrl(), serviceIdentifier.getApplicationId());
                 tracker.setUserId(Settings.Secure.getString(context.getContentResolver(), Settings.Secure
                         .ANDROID_ID));
                 TrackHelper.track().download().with(tracker);
