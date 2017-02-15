@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 
 
-class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
+public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 
     private static Tracker tracker;
     private static boolean enabled;

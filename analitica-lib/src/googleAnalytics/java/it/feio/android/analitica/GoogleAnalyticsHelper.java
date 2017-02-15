@@ -10,7 +10,7 @@ import com.google.android.gms.analytics.Tracker;
 import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 
 
-class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
+public class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
     private static Tracker tracker;
     private static boolean enabled;
