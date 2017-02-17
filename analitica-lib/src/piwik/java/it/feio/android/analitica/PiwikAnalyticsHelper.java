@@ -16,12 +16,11 @@ import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 
     private static Tracker tracker;
-    private static boolean enabled;
 
 
-    PiwikAnalyticsHelper(Context context, PiwikServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
-        super(context, serviceIdentifier);
-        enabled = serviceIdentifier != null;
+    PiwikAnalyticsHelper(Context context, boolean enable, PiwikServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
+        super(context, enable, serviceIdentifier);
+        enabled = enable;
         if (enabled && tracker == null) {
             try {
                 tracker = Piwik.getInstance(context).newTracker(serviceIdentifier.getUrl(), serviceIdentifier.getApplicationId());

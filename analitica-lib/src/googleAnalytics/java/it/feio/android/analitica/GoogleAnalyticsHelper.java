@@ -13,13 +13,12 @@ import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 public class GoogleAnalyticsHelper extends AnalyticsAbstractHelper {
 
     private static Tracker tracker;
-    private static boolean enabled;
 
 
-    GoogleAnalyticsHelper(Context context, GoogleAnalyticsServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
-        super(context, serviceIdentifier);
-        enabled = serviceIdentifier != null;
-        if (enabled && tracker == null) {
+    GoogleAnalyticsHelper(Context context, boolean enable, GoogleAnalyticsServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
+        super(context, enable, serviceIdentifier);
+        enabled = enable;
+        if (enable && tracker == null) {
             tracker = GoogleAnalytics.getInstance(context).newTracker(serviceIdentifier.getTrackingId());
         }
     }

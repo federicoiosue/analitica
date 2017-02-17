@@ -4,9 +4,10 @@ package it.feio.android.analitica;
 import android.content.Context;
 
 import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
+import it.feio.android.analitica.exceptions.InvalidIdentifierException;
 
 
 abstract class AnalyticsHelperAbstractFactory {
 
-    abstract AnalyticsHelper getAnalyticsHelper(Context context, ServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException;
+    public abstract AnalyticsHelper getAnalyticsHelper(Context context, boolean enable, String... identifiers) throws AnalyticsInstantiationException, InvalidIdentifierException;
 }
