@@ -36,6 +36,8 @@ dependencies {
 	{fossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:piwikRelease@aar'){
         transitive=true
     }
+    {nonFossFlavor}Compile 'com.google.android.gms:play-services-analytics:10.0.1'
+    {fossFlavor}Compile 'org.piwik.sdk:piwik-sdk:1.0.2'
 }
 ```
 
