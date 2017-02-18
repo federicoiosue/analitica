@@ -30,8 +30,12 @@ allprojects {
 
 ```groovy
 dependencies {
-	{nonFossFlavor}Compile 'com.github.federicoiosue:analitica:{version}:googleAnalyticsRelease@aar'
-	{fossFlavor}Compile 'com.github.federicoiosue:analitica:{version}:piwikRelease@aar'
+	{nonFossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:googleAnalyticsRelease@aar'){
+        transitive=true
+    }
+	{fossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:piwikRelease@aar'){
+        transitive=true
+    }
 }
 ```
 
@@ -42,17 +46,25 @@ dependencies {
 #### Piwik
 
 ```java
-PiwikServiceIdentifier serviceIdentifier = new PiwikServiceIdentifier(PIWIK_URL, APPLICATION_ID);
-AnalyticsHelper analyticsHelper = new AnalyticsHelperFactory()
-	.getAnalyticsHelper(context, serviceIdentifier);
+
+try {
+	AnalyticsHelperanalyticsHelper = new AnalyticsHelperFactory().getAnalyticsHelper(context, true, PIWIK_URL, APPLICATION_ID);
+  ...
+} catch (AnalyticsInstantiationException | InvalidIdentifierException e) {
+	...
+}
 ```
 
 #### Google Analytics
 
 ```java
-GoogleAnalyticsServiceIdentifier serviceIdentifier = new GoogleAnalyticsServiceIdentifier(TRACKING_ID);
-AnalyticsHelper analyticsHelper = new AnalyticsHelperFactory()
-	.getAnalyticsHelper(context, serviceIdentifier);
+
+try {
+	AnalyticsHelperanalyticsHelper = new AnalyticsHelperFactory().getAnalyticsHelper(context, true, TRACKING_ID);
+  ...
+} catch (AnalyticsInstantiationException | InvalidIdentifierException e) {
+	...
+}
 ```
 
 ### Events tracking
