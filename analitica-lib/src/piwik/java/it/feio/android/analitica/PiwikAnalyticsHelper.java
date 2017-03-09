@@ -11,6 +11,7 @@ import org.piwik.sdk.Tracker;
 import java.net.MalformedURLException;
 
 import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
+import it.feio.android.analitica.exceptions.InvalidTrackerOperationException;
 
 
 public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
@@ -35,7 +36,7 @@ public class PiwikAnalyticsHelper extends AnalyticsAbstractHelper {
 
 
     @Override
-    public Tracker getTracker() {
+    public Tracker getTracker() throws InvalidTrackerOperationException {
         return tracker;
     }
 

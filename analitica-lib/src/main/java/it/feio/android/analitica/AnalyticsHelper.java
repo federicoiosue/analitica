@@ -1,13 +1,15 @@
 package it.feio.android.analitica;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import it.feio.android.analitica.exceptions.InvalidTrackerOperationException;
 
 public interface AnalyticsHelper {
 
     enum CATEGORIES {ACTION, SETTING, UPDATE}
 
-    <T> T getTracker();
+    <T> T getTracker() throws InvalidTrackerOperationException;
 
     void trackScreenView(String screenName);
 
