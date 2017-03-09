@@ -6,7 +6,7 @@ version = project.VERSION_NAME
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion project.MIN_SDK
@@ -38,7 +38,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     androidTestCompile 'junit:junit:4.12'
 
-    googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:10.0.1'
+    googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:10.2.0'
     piwikCompile 'org.piwik.sdk:piwik-sdk:1.0.2'
 }
 
