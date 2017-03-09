@@ -38,7 +38,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     androidTestCompile 'junit:junit:4.12'
 
-    googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:10.2.0'
+    googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:10.0.1'
     piwikCompile 'org.piwik.sdk:piwik-sdk:1.0.2'
 }
 
