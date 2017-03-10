@@ -1,6 +1,5 @@
 package it.feio.android.analitica;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import it.feio.android.analitica.exceptions.InvalidTrackerOperationException;

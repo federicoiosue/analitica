@@ -2,6 +2,7 @@ package it.feio.android.analitica;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import it.feio.android.analitica.exceptions.AnalyticsInstantiationException;
 import it.feio.android.analitica.exceptions.InvalidTrackerOperationException;
@@ -9,7 +10,11 @@ import it.feio.android.analitica.exceptions.InvalidTrackerOperationException;
 
 public class MockAnalyticsHelper extends AnalyticsAbstractHelper {
 
-    MockAnalyticsHelper(Context context, boolean enable, ServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
+    public MockAnalyticsHelper() {
+        Log.i(getClass().getSimpleName(), "MockAnalyticsHelper instance methods are empty. No analytic data will be collected.");
+    }
+
+    private MockAnalyticsHelper(Context context, boolean enable, ServiceIdentifier serviceIdentifier) throws AnalyticsInstantiationException {
         super(context, enable, serviceIdentifier);
     }
 

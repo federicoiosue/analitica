@@ -11,8 +11,7 @@ abstract class AnalyticsAbstractHelper implements AnalyticsHelper {
     private ServiceIdentifier serviceIdentifier;
     boolean enabled;
 
-    private AnalyticsAbstractHelper() {
-        throw new UnsupportedOperationException("Empty constructor not available");
+    AnalyticsAbstractHelper() {
     }
 
 
