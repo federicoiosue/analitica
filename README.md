@@ -2,6 +2,8 @@
 
 # Analitica Library
 
+![Release](https://jitpack.io/v/federicoiosue/analitica.svg)
+
 ## Overview
 
 Usefull library to manage both Google Analytics and Piwik services to match FOSS software need
@@ -77,6 +79,18 @@ analyticsHelper.trackScreenView("VIEW NAME");
 // Track action
 analyticsHelper.trackEvent(CATEGORY, "ACTION NAME");
 ```
+
+### Mocked Helper
+
+When analytics helper instantiation fail for any reason, or for development purposes when you don't want that any analytic data is sent a mock class is available.
+
+```java
+} catch (AnalyticsInstantiationException | InvalidIdentifierException e) {
+	analyticsHelper = new MockAnalyticsHelper();
+}
+```
+
+This class' methods simply do nothing but providing an implementation of the same interface than working *AnalyticsHelper classes.
 
 ## Apps using Analitica
 
