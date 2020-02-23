@@ -10,7 +10,7 @@ public class AnalyticsHelperFactory extends AnalyticsHelperAbstractFactory {
 
     @Override
     public AnalyticsHelper getAnalyticsHelper(Context context, boolean enable, String... identifiers) throws AnalyticsInstantiationException, InvalidIdentifierException {
-        PiwikServiceIdentifier serviceIdentifier = new PiwikServiceIdentifier(identifiers);
-        return new PiwikAnalyticsHelper(context, enable, serviceIdentifier);
+        MatomoServiceIdentifier serviceIdentifier = new MatomoServiceIdentifier(identifiers);
+        return new MatomoAnalyticsHelper(context, enable, serviceIdentifier);
     }
 }

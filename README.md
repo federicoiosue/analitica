@@ -6,20 +6,20 @@
 
 ## Overview
 
-Usefull library to manage both Google Analytics and Piwik services to match FOSS software need
+Usefull library to manage both Google Analytics and Matomo services to match FOSS software need
 
 ## Detailed overview
 
 When developing an application, expecially if you're a single developer or small development team, is extremelly important to have informations about how to improve your work for users. Having analytics informations helps you to decide what language to translate your app into, if supporting RTL languages is relevant and many more things.
 
 However, if you decide to work on a completelly open-sourced stack you can't simply include an arbitrary closed-source analytics library and go on. 
-To simplify this task *Analitica* offers to developers an helper to manage both [Google Analytics](https://www.google.it/intl/it/analytics/) and [Piwik](https://piwik.org/) third-party libraries gaving you the opportunity to include just one of them or both managing dependencies in a Gradle-flavored way.
+To simplify this task *Analitica* offers to developers an helper to manage both [Google Analytics](https://www.google.it/intl/it/analytics/) and [Matomo](https://matomo.org/) third-party libraries gaving you the opportunity to include just one of them or both managing dependencies in a Gradle-flavored way.
 
 ## How to include into your project
 
 **Step 1.** Add the following snippet in your root *build.gradle* at the end of repositories:
 
-```groovy
+```
 allprojects {
 	repositories {
 		...
@@ -30,16 +30,16 @@ allprojects {
 
 **Step 2.** Add the needed dependencies
 
-```groovy
+```
 dependencies {
 	{nonFossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:googleAnalyticsRelease@aar'){
         transitive=true
     }
-	{fossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:piwikRelease@aar'){
+	{fossFlavor}Compile ('com.github.federicoiosue:analitica:{version}:matomoRelease@aar'){
         transitive=true
     }
     {nonFossFlavor}Compile 'com.google.android.gms:play-services-analytics:10.0.1'
-    {fossFlavor}Compile 'org.piwik.sdk:piwik-sdk:1.0.2'
+    {fossFlavor}Implementation 'org.matomo.sdk:tracker:4.1.2'
 }
 ```
 
@@ -47,12 +47,11 @@ dependencies {
 
 ### Instantiate helper
 
-#### Piwik
+#### Matomo
 
-```java
-
+```
 try {
-	AnalyticsHelperanalyticsHelper = new AnalyticsHelperFactory().getAnalyticsHelper(context, true, PIWIK_URL, APPLICATION_ID);
+	AnalyticsHelperanalyticsHelper = new AnalyticsHelperFactory().getAnalyticsHelper(context, true, MATOMO_URL, APPLICATION_ID);
   ...
 } catch (AnalyticsInstantiationException | InvalidIdentifierException e) {
 	...
@@ -61,8 +60,7 @@ try {
 
 #### Google Analytics
 
-```java
-
+```
 try {
 	AnalyticsHelperanalyticsHelper = new AnalyticsHelperFactory().getAnalyticsHelper(context, true, TRACKING_ID);
   ...
@@ -73,7 +71,7 @@ try {
 
 ### Events tracking
 
-```java
+```
 // Track view
 analyticsHelper.trackScreenView("VIEW NAME");
 // Track action
@@ -98,12 +96,12 @@ This class' methods simply do nothing but providing an implementation of the sam
 
 ## Developed with love and passion by
 
-- Federico Iosue - [Website](http://www.iosue.it/federico)
+- Federico Iosue - [Website](https://federico.iosue.it)
 
 ## License
 
 ```
-Copyright 2017 Federico Iosue
+Copyright 2017-2020 Federico Iosue
 ```
 
 ```

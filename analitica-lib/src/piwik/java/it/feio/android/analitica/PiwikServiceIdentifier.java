@@ -4,13 +4,13 @@ import android.text.TextUtils;
 
 import it.feio.android.analitica.exceptions.InvalidIdentifierException;
 
-public class PiwikServiceIdentifier extends ServiceIdentifier {
+public class MatomoServiceIdentifier extends ServiceIdentifier {
 
     /**
-     * @param identifiers Must be both Piwik service URL and applicationId
+     * @param identifiers Must be both Matomo service URL and applicationId
      * @throws InvalidIdentifierException
      */
-    public PiwikServiceIdentifier(String... identifiers) throws InvalidIdentifierException {
+    public MatomoServiceIdentifier(String... identifiers) throws InvalidIdentifierException {
         super(identifiers);
     }
 
@@ -20,7 +20,7 @@ public class PiwikServiceIdentifier extends ServiceIdentifier {
                 && android.util.Patterns.WEB_URL.matcher(identifiers[0]).matches()
                 && TextUtils.isDigitsOnly(identifiers[1]);
         if (!success) {
-            throw new InvalidIdentifierException("Piwik identifiers MUST be both service URL AND applicationId");
+            throw new InvalidIdentifierException("Matomo identifiers MUST be both service URL AND applicationId");
         }
     }
 
