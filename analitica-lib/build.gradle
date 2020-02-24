@@ -9,11 +9,16 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     defaultConfig {
-        minSdkVersion project.MIN_SDK
-        targetSdkVersion project.TARGET_SDK
-        versionName project.VERSION_NAME
-        versionCode Integer.parseInt(project.VERSION_CODE)
+        minSdkVersion MIN_SDK
+        targetSdkVersion TARGET_SDK
+        versionName VERSION_NAME
+        versionCode Integer.parseInt(VERSION_CODE)
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
